@@ -1,42 +1,49 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import React from "react";
+import App from "./App";
+
+
+// it is regular functional component
 
 function MyApp() {
-  return (
-    <div>
-      <h1>custom app |</h1>
-    </div>
-  );
+  const name = 'durgesh'
+  return <h1>codehustle app{name}</h1>;
 }
-const ReactElement = {
-  type: "a",
-  props: {
-    href: "https://google.com",
-    target: "_blank",
+// it is plan object
+// it can not be render because react want element to render and this is plain object 
+const ReactElement={
+  type:"a",
+  props:{
+    href:"https://google.com",
+    target:"_blank"
   },
-  children: "Click me to visit google",
-};
+  children:"click to visit google.com",
+}
 
-const AnotherElement = (
-    <a href="https://google.com" target="_blank">visit google</a>
-)
-const reactElement = React.createElement(
-    'a',
-    {
-        href:'https://google.com',target:'_blank'
-    },
-    'click me to visit google',
-    AnotherElement
+// so this ReactElement is not render because it is not a element and react need element to render
+// 
+// let make a jsx expression that represent a react element
+const AnotherElement=(
+  <a href="https://google.com" target="_blank">google.com</a>
 )
 
+// ise hum element kehte hai 
+// aap isse bts bhi keh sakte hai AnotherElement ka
+const reactElement=React.createElement(
+ "a",
+  {
+    href:"https://google.com",
+    target:"_blank"
+  },
+ "click to visit google.com",
+)
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <MyApp />
-  // MyApp()
-//   ReactElement
-//   AnotherElement
-// {/* <App /> */}
-reactElement
-);
+    // MyApp()
+    // <MyApp />
+    // ReactElement
+    // reactElement,
+    // AnotherElement
+    <App/>
+  );
