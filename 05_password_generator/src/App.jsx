@@ -1,38 +1,42 @@
+/*
+useEffect is used for handling side effects and executing code after renders, while useCallback is used for optimizing performance by memoizing functions
+ */
+
+
 import { useState, useCallback, useEffect,useRef } from "react";
 import "./App.css";
 
 function App() {
-  const [length, setLength] = useState(8);
-  const [numAllow, setNumAllow] = useState(false);
-  const [charAllow, setCharAllow] = useState(false);
-  const [Password, setPassword] = useState("");
+  const [length, setLength]=useState(8)
+  const [numAllow,setNumAllow]=useState(false)
+  const [charAllow,setCharAllow]=useState(false)
+  const [password, setPassword]=useState("")
   const passwordRef = useRef(null)
 
-  const passwordGenerator = useCallback(() => {
-    let pass = "";
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    if (numAllow) str += "0123456789";
-    if (charAllow) str += "!@#$%^&*()_-+=~|{}";
+  const generatePassword=useCallback(()=>{
+    let pass=""
+    let str =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
-    for (let i = 1; i <= length; i++) {
-      let char = Math.floor(Math.random() * str.length + 1);
-      pass += str.charAt(char);
+    if(charAllow){
+      str+="!@#$%^&*()_-+=~|{}"
     }
-    setPassword(pass);
-  }, [length, numAllow, charAllow, setPassword]);
-  
-  const copyPass =useCallback(()=>{
-    // how to copy on clickboard
-    window.navigator.clipboard.writeText(Password)
-    // using passRef
-    passwordRef.current?.select();
-    // kitna range select kare
-    // passwordRef.current?.setSelectionRange(0,20) 
-  },[Password])
-  useEffect(()=>{
-    passwordGenerator();
-  },[length, numAllow, charAllow, setPassword])
+    if(numAllow){
+      str+='0123456789'
+    }
+    for (let i = 1; i <= length; i++) {
+      let char = Math.floor(Math.random() * str.length  + 1)
+      pass=pass+str.charAt(char)
+    }
+    setPassword(pass)
+  },[length,numAllow, charAllow, setPassword])
 
+  const copyPassword = useCallback(()=>{
+      window.navigator.clipboard.writeText(password);
+      passwordRef.current?.select();
+  },[password])
+  useEffect(()=>{
+    generatePassword()
+  },[length, numAllow, charAllow, setPassword])
   
   return (
     <>
@@ -43,7 +47,7 @@ function App() {
       <div className="flex items-center rounded-lg border border-gray-400">
         <input
           type="text"
-          value={Password}
+          value={password}
           className="flex-1 p-2 outline-none"
           placeholder="Password"
           readOnly
@@ -51,7 +55,7 @@ function App() {
         />
         <button
           className="p-2 text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-          onClick={copyPass}
+          onClick={copyPassword}
         >
           Copy
         </button>
@@ -62,11 +66,11 @@ function App() {
             type="range"
             name=""
             id=""
-            min={6}
+            min={8}
             max={20}
             value={length}
-            onChange={(e) => {
-              setLength(e.target.value);
+            onChange={(e)=>{
+              setLength(e.target.value)
             }}
             className="w-full"
           />
@@ -77,8 +81,8 @@ function App() {
             type="checkbox"
             id="numberInput"
             defaultChecked={numAllow}
-            onChange={() => {
-              setNumAllow((prev) => !prev);
+            onChange={()=>{
+              setNumAllow((prev)=> !prev)
             }}
           />
           <label htmlFor="numberInput">Numbers</label>
@@ -86,8 +90,8 @@ function App() {
             type="checkbox"
             id="charInput"
             defaultChecked={charAllow}
-            onChange={() => {
-              setCharAllow((prev) => !prev);
+            onChange={()=>{
+              setCharAllow((prev)=> !prev)
             }}
           />
           <label htmlFor="charInput">Characters</label>
