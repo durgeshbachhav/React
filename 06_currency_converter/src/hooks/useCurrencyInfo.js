@@ -4,7 +4,8 @@ function hello(){
      return []
 }
 
-// 
+// please write hooks in pure .js not in .jsx
+// custom hooks build in hooks ko use kar sakte hai
 import { useEffect, useState } from "react"
 function useCurrencyInfo(currency){
      const [data,setdata]=useState({})
