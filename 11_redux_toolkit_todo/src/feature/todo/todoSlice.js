@@ -6,7 +6,8 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 // iniatial state
-
+// isi se hume frontend se fetch karne se data milega 
+// matlab sab deta jo ayega woh yahi store hoga
 const initialState = {
      todos: [{ id: 1, text: "hello world!" }]
 }

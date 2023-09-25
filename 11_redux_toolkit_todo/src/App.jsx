@@ -6,8 +6,8 @@ function App() {
   return (
     <div>
       <h1>redux toolkit</h1>
-      <AddTodo />
-      <Todos />
+     
+      <Todos /> <AddTodo />
     </div>
   );
 }
