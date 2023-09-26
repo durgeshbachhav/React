@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg{
+  background: linear-gradient(rgb(0 0 0 / 66%), rgb(0 0 0 / 63%)),
+              url('https://wallpaperaccess.com/full/54684.jpg');
+  background-size: cover;
+  min-height: 90vh;
+  background-repeat: no-repeat;
+}
