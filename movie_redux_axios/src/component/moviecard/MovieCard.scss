@@ -1,0 +1,44 @@
+@import '../../common/colors.scss';
+
+.card-item {
+     border: 1px solid #ddd;
+     border-radius: 8px;
+     overflow: hidden;
+     transition: transform 0.2s ease-in-out;
+   
+     &:hover {
+       transform: scale(1.05);
+     }
+   
+     .card-inner {
+       display: flex;
+       flex-direction: column;
+       height: 100%;
+     }
+   
+     .card-top {
+       img {
+         width: 100%;
+         height: auto;
+       }
+     }
+   
+     .card-bottom {
+       padding: 10px;
+   
+       .card-info {
+         h4 {
+           color: $primary-color;
+           margin-bottom: 5px;
+         }
+   
+         p {
+           color: #777;
+           font-size: 14px;
+         }
+       }
+     }
+   }
+   
+   // Rest of your styles...
+   
